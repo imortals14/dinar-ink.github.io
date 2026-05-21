@@ -3,9 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>Ink Mixer Pro · GREIF</title>
+  <title>Ink Mixer Pro · GREIF · Экспертная система</title>
   <meta name="theme-color" content="#0f172a">
-  <meta name="description" content="Профессиональный калькулятор пропорций чернил и растворителей для печатного производства.">
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap');
 
@@ -37,35 +36,24 @@
     }
 
     .container {
-      max-width: 520px;
+      max-width: 550px;
       margin: 0 auto;
     }
 
-    /* ЛОГОТИП */
     .logo-container {
       text-align: center;
-      margin-bottom: 1rem;
+      margin-bottom: 1.2rem;
     }
     .company-logo {
       max-width: 85%;
       height: auto;
       max-height: 100px;
       filter: drop-shadow(0 4px 12px rgba(34, 197, 94, 0.2));
-      transition: transform 0.2s ease;
-    }
-    .company-logo:hover {
-      transform: scale(1.01);
     }
 
-    /* Хедер */
     .header {
       text-align: center;
       margin-bottom: 1.8rem;
-      animation: floatIn 0.6s ease-out;
-    }
-    .mixer-icon {
-      font-size: 2.4rem;
-      filter: drop-shadow(0 0 8px rgba(99,102,241,0.5));
     }
     .title {
       font-size: 1.9rem;
@@ -74,14 +62,12 @@
       background-clip: text;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      letter-spacing: -0.5px;
     }
     .subtitle {
       font-size: 0.8rem;
       color: var(--text-muted);
     }
 
-    /* Переключатель режимов */
     .mode-switch {
       background: var(--card-bg);
       backdrop-filter: blur(16px);
@@ -114,7 +100,6 @@
       box-shadow: 0 4px 12px rgba(79, 70, 229, 0.4);
     }
 
-    /* Карточки */
     .card {
       background: var(--card-bg);
       backdrop-filter: blur(20px);
@@ -123,10 +108,6 @@
       padding: 1.5rem;
       margin-bottom: 1.5rem;
       transition: transform 0.2s, box-shadow 0.2s;
-    }
-    .card:hover {
-      transform: translateY(-3px);
-      border-color: rgba(129, 140, 248, 0.5);
     }
     .card-title {
       font-size: 1.2rem;
@@ -137,7 +118,6 @@
       margin-bottom: 1.2rem;
     }
 
-    /* Поля ввода */
     .input-group {
       margin-bottom: 1.2rem;
     }
@@ -159,7 +139,6 @@
       font-size: 1rem;
       color: white;
       font-weight: 500;
-      transition: 0.2s;
     }
     input:focus, select:focus {
       outline: none;
@@ -178,11 +157,8 @@
       text-align: center;
       margin: 1rem 0 0.3rem;
       border-left: 3px solid var(--greif-green);
-      font-weight: 500;
-      font-size: 0.9rem;
     }
 
-    /* Кнопки */
     .btn {
       width: 100%;
       padding: 15px;
@@ -200,18 +176,18 @@
       gap: 8px;
       margin-top: 0.8rem;
     }
-    .btn:active { transform: scale(0.97); }
-
-    /* Результат */
-    .result-card {
-      background: linear-gradient(125deg, rgba(16, 185, 129, 0.18), rgba(5, 150, 105, 0.1));
-      border-left: 3px solid var(--success);
+    .btn-secondary {
+      background: linear-gradient(105deg, #334155, #1e293b);
     }
+    .btn-warning {
+      background: linear-gradient(105deg, #f59e0b, #d97706);
+    }
+
     .result-item {
       display: flex;
       justify-content: space-between;
       align-items: baseline;
-      padding: 12px 0;
+      padding: 10px 0;
       border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
     }
     .solvent-value {
@@ -222,120 +198,112 @@
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
-    .stat-grid {
-      display: flex;
-      gap: 12px;
-      margin-top: 18px;
+
+    .feedback-block {
+      margin-top: 1.5rem;
+      padding-top: 1rem;
+      border-top: 1px solid rgba(255,255,255,0.2);
     }
-    .stat {
+    .temp-input {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+    .temp-input input {
       flex: 1;
-      background: rgba(0, 0, 0, 0.4);
-      border-radius: 1.2rem;
-      padding: 10px;
-      text-align: center;
+      margin-bottom: 0;
     }
-    .stat-number {
-      font-size: 1.2rem;
-      font-weight: 800;
-      color: var(--greif-green);
-    }
-
-    /* Прогресс */
-    .progress-area {
-      margin: 12px 0 4px;
-    }
-    .flex-row {
+    .radio-group {
       display: flex;
-      justify-content: space-between;
-      font-size: 0.7rem;
+      gap: 20px;
+      margin: 10px 0;
     }
-    .progress-bar {
-      background: #1e293b;
-      border-radius: 20px;
-      height: 5px;
-      overflow: hidden;
-      margin-top: 4px;
-    }
-    .progress-fill {
-      width: 97%;
-      background: linear-gradient(90deg, #22c55e, #facc15);
-      height: 5px;
+    .radio-group label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      font-weight: normal;
+      text-transform: none;
     }
 
+    .ai-suggestion {
+      background: linear-gradient(105deg, rgba(99,102,241,0.2), rgba(79,70,229,0.1));
+      border-radius: 1.2rem;
+      padding: 1rem;
+      margin: 1rem 0;
+      border: 1px solid var(--primary);
+    }
     footer {
       text-align: center;
       font-size: 0.65rem;
       color: #334155;
       margin-top: 1rem;
     }
-
-    @keyframes floatIn {
-      0% { opacity: 0; transform: translateY(-15px); }
-      100% { opacity: 1; transform: translateY(0); }
-    }
   </style>
 </head>
 <body>
 <div class="container">
-  <!-- ЛОГОТИП КОМПАНИИ (ПРЯМАЯ ССЫЛКА) -->
-<div class="logo-container">
-  <img src="greif-logo.png" alt="GREIF Logo" style="max-width: 90%; height: auto; max-height: 110px; display: block; margin: 0 auto;">
-</div>
-</div>
+  <div class="logo-container">
+    <img src="greif-logo.png" alt="GREIF Logo" class="company-logo" style="mix-blend-mode: multiply; max-width: 90%; max-height: 110px;">
+  </div>
   <div class="header">
-    <div class="mixer-icon">🧪⚙️</div>
     <h1 class="title">Ink Mixer Pro</h1>
-    <p class="subtitle">Профессиональный расчёт для чернил и растворителей</p>
+    <p class="subtitle">Экспертная система с обучением</p>
   </div>
 
-  <!-- Переключатель режимов -->
   <div class="mode-switch" id="modeSwitch">
     <button class="mode-btn active" data-mode="fresh">🆕 Чистые чернила</button>
     <button class="mode-btn" data-mode="diluted">⚖️ Долив в разбавленные</button>
   </div>
 
-  <!-- Карточка ввода данных -->
   <div class="card">
-    <div class="card-title">
-      <span>📐</span> 
-      <span id="formTitle">Разбавление чистых чернил</span>
-    </div>
-
+    <div class="card-title"><span>📐</span> <span id="formTitle">Параметры замеса</span></div>
     <div class="input-group">
       <label for="manufacturer">🏭 Производитель</label>
       <select id="manufacturer">
-        <option value="sankem">Санкемикалз (26.7% раст. | CF2000:75/CF3000:25)</option>
-        <option value="siko">Сико (33.3% раст. | CF2000:40/CF3000:60)</option>
-        <option value="china">Китай (25% раст. | CF2000:80/CF3000:20)</option>
-        <option value="tampo">Тампо Механика (22.1% раст. | CF2000:33.3/CF3000:66.7)</option>
+        <option value="sankem">Санкемикалз (26.7% | 75/25)</option>
+        <option value="siko">Сико (33.3% | 40/60)</option>
+        <option value="china">Китай (25% | 80/20)</option>
+        <option value="tampo">Тампо Механика (22.1% | 33/67)</option>
       </select>
     </div>
-
     <div id="dynamicFields"></div>
-
-    <div class="progress-area">
-      <div class="flex-row"><span>🎯 Точность рецепта</span><span id="accuracyValue">97%</span></div>
-      <div class="progress-bar"><div class="progress-fill" id="accuracyFill"></div></div>
-    </div>
-
-    <button class="btn" id="calculateBtn">🧮 РАССЧИТАТЬ ПРОПОРЦИИ</button>
+    <button class="btn" id="calculateBtn">🧮 РАССЧИТАТЬ БАЗОВЫЙ РЕЦЕПТ</button>
   </div>
 
-  <!-- Карточка результата (изначально скрыта) -->
-  <div class="card result-card" id="resultCard" style="display: none;">
-    <div class="card-title"><span>📊</span> Результат замеса</div>
+  <div class="card" id="resultCard" style="display: none;">
+    <div class="card-title"><span>📊</span> Базовый рецепт</div>
     <div id="resultContent"></div>
-    <div class="stat-grid" id="statGrid" style="display: none;">
-      <div class="stat"><div class="stat-number" id="totalCost">0₽</div><div style="font-size:0.7rem;">стоимость</div></div>
-      <div class="stat"><div class="stat-number" id="timeSave">~15 сек</div><div style="font-size:0.7rem;">экономия расчёта</div></div>
+    
+    <div class="feedback-block" id="feedbackBlock">
+      <div class="card-title" style="margin-top: 0;">🧠 Обратная связь (обучение системы)</div>
+      <div class="temp-input">
+        <input type="number" id="workshopTemp" placeholder="Температура в цеху, °C" step="1">
+        <span>°C</span>
+      </div>
+      <div class="radio-group">
+        <label><input type="radio" name="dryness" value="good"> ✅ Всё успевает</label>
+        <label><input type="radio" name="dryness" value="bad"> ⚠️ Нет, рамка сохнет / нужен CF5000</label>
+      </div>
+      <div id="cf5000AdviceBlock" style="display: none;">
+        <div class="ai-suggestion" id="aiSuggestionText">
+          💡 На основе прошлых замесов: ...
+        </div>
+        <div class="input-group">
+          <label>🔧 Сколько CF5000 добавить (мл)?</label>
+          <input type="number" id="cf5000Amount" placeholder="например 100" value="100">
+        </div>
+        <button class="btn btn-secondary" id="saveFeedbackBtn">💾 Сохранить решение и обучить систему</button>
+      </div>
     </div>
   </div>
-
-  <footer>© GREIF Ink Mixer Pro — точный подбор компонентов</footer>
+  <footer>© GREIF Ink Mixer Pro — система накапливает ваш опыт</footer>
 </div>
 
 <script>
-  // ---------- БАЗА ДАННЫХ ПРОИЗВОДИТЕЛЕЙ ----------
+  // ------ БАЗА ПРОИЗВОДИТЕЛЕЙ ------
   const manufacturerData = {
     sankem: { name:"Санкемикалз", solventPercent:0.267, cf2000ratio:0.75, cf3000ratio:0.25, costCf2000PerLiter:150, costCf3000PerLiter:200 },
     siko: { name:"Сико", solventPercent:0.333, cf2000ratio:0.4, cf3000ratio:0.6, costCf2000PerLiter:150, costCf3000PerLiter:200 },
@@ -343,204 +311,220 @@
     tampo: { name:"Тампо Механика", solventPercent:0.221, cf2000ratio:0.333, cf3000ratio:0.667, costCf2000PerLiter:150, costCf3000PerLiter:200 }
   };
 
-  let currentMode = 'fresh';   // fresh — разбавление чистых, diluted — долив в разбавленные
+  let currentMode = 'fresh';
+  let lastCalculationResult = null; // храним последний результат, чтобы сохранить в обучение
 
-  function getManufacturerData() {
-    const key = document.getElementById('manufacturer').value;
-    return manufacturerData[key];
+  // ----- ЗАГРУЗКА И СОХРАНЕНИЕ ДАННЫХ ОБУЧЕНИЯ (localStorage) -----
+  function loadTrainingData() {
+    const saved = localStorage.getItem('inkMixerTraining');
+    if (saved) {
+      try {
+        return JSON.parse(saved);
+      } catch(e) { return []; }
+    }
+    return [];
   }
 
-  // Расчёт для режима "чистые чернила"
+  function saveTrainingData(data) {
+    localStorage.setItem('inkMixerTraining', JSON.stringify(data));
+  }
+
+  // Добавление нового опыта (вес чернил, температура, добавил ли CF5000, сколько)
+  function addExperience(inkWeight, temperature, addedCF5000, manufacturerKey) {
+    if (!temperature || temperature < 20) return;
+    let training = loadTrainingData();
+    training.push({
+      date: new Date().toISOString(),
+      inkWeight: inkWeight,
+      temperature: temperature,
+      addedCF5000: addedCF5000,
+      manufacturer: manufacturerKey
+    });
+    // Оставляем последние 50 записей, чтобы не раздувать
+    if (training.length > 50) training = training.slice(-50);
+    saveTrainingData(training);
+    console.log("Обучение сохранено:", {inkWeight, temperature, addedCF5000});
+  }
+
+  // Поиск похожих ситуаций для рекомендации
+  function getRecommendation(inkWeight, temperature, manufacturerKey) {
+    const training = loadTrainingData();
+    if (training.length === 0) return null;
+    // Ищем записи с похожим весом (+- 20%) и температурой (+- 5 градусов) и тем же производителем
+    const similar = training.filter(exp => {
+      const weightMatch = Math.abs(exp.inkWeight - inkWeight) / inkWeight < 0.2;
+      const tempMatch = Math.abs(exp.temperature - temperature) <= 5;
+      const manMatch = exp.manufacturer === manufacturerKey;
+      return weightMatch && tempMatch && manMatch && exp.addedCF5000 > 0;
+    });
+    if (similar.length === 0) return null;
+    // Усредняем количество CF5000 из похожих ситуаций
+    const avgCF5000 = similar.reduce((sum, e) => sum + e.addedCF5000, 0) / similar.length;
+    return { ml: Math.round(avgCF5000), count: similar.length };
+  }
+
+  // ----- ЛОГИКА РАСЧЁТОВ -----
+  function getManufacturerData() {
+    return manufacturerData[document.getElementById('manufacturer').value];
+  }
+
   function calculateFresh(inkWeight, data) {
-    if (!inkWeight || inkWeight <= 0) return null;
     const totalSolventML = inkWeight * data.solventPercent;
     const cf2000 = Math.round(totalSolventML * data.cf2000ratio);
     const cf3000 = Math.round(totalSolventML * data.cf3000ratio);
-    const cost = (cf2000 / 1000) * data.costCf2000PerLiter + (cf3000 / 1000) * data.costCf3000PerLiter;
-    return {
-      cf2000, cf3000,
-      totalSolvent: Math.round(totalSolventML),
-      totalCost: Math.round(cost),
-      addedInkGrams: inkWeight
-    };
+    return { cf2000, cf3000, totalSolvent: Math.round(totalSolventML), addedInkGrams: inkWeight };
   }
 
-  // Расчёт для режима "долив в разбавленные" (весовой метод)
   function calculateDiluted(initialWeight, finalWeight, data) {
-    if (!initialWeight || initialWeight <= 0) return { error: "Начальный вес должен быть больше 0" };
-    if (!finalWeight || finalWeight <= initialWeight) return { error: "Финальный вес должен быть больше начального (добавьте чернила)" };
     const addedInk = finalWeight - initialWeight;
-    if (addedInk <= 0) return { error: "Нет добавленных чернил, проверьте весы" };
+    if (addedInk <= 0) return null;
     const totalSolventML = addedInk * data.solventPercent;
     const cf2000 = Math.round(totalSolventML * data.cf2000ratio);
     const cf3000 = Math.round(totalSolventML * data.cf3000ratio);
-    const cost = (cf2000 / 1000) * data.costCf2000PerLiter + (cf3000 / 1000) * data.costCf3000PerLiter;
-    return {
-      cf2000, cf3000,
-      totalSolvent: Math.round(totalSolventML),
-      totalCost: Math.round(cost),
-      addedInkGrams: addedInk
-    };
+    return { cf2000, cf3000, totalSolvent: Math.round(totalSolventML), addedInkGrams: addedInk };
   }
 
-  // Динамическая отрисовка полей ввода в зависимости от режима
   function renderDynamicFields() {
     const container = document.getElementById('dynamicFields');
     const titleSpan = document.getElementById('formTitle');
     if (currentMode === 'fresh') {
       titleSpan.innerText = 'Разбавление чистых чернил';
-      container.innerHTML = `
-        <div class="input-group">
-          <label>🎨 Вес ЧИСТЫХ чернил (граммы)</label>
-          <input type="number" id="freshWeight" placeholder="например: 1000" step="1" autofocus>
-          <div class="helper-text">Масса неразбавленных чернил, которые нужно смешать</div>
-        </div>
-      `;
+      container.innerHTML = `<div class="input-group"><label>🎨 Вес ЧИСТЫХ чернил (граммы)</label><input type="number" id="freshWeight" placeholder="например: 1000" step="1" autofocus></div>`;
     } else {
       titleSpan.innerText = 'Долив в разбавленные (весовой метод)';
       container.innerHTML = `
-        <div class="input-group">
-          <label>📦 Вес банки с РАЗБАВЛЕННЫМИ чернилами (г)</label>
-          <input type="number" id="initialWeight" placeholder="например: 500" step="1">
-          <div class="helper-text">Поставьте банку на весы → запишите вес</div>
-        </div>
-        <div class="input-group">
-          <label>➕ Вес после добавления ЧИСТЫХ чернил (г)</label>
-          <input type="number" id="finalWeight" placeholder="например: 1300" step="1">
-          <div class="helper-text">Добавьте чистые чернила и снова взвесьте</div>
-        </div>
-        <div id="autoAddedPreview" class="chip-info" style="display: none;">
-          ⚡ Добавлено чистых чернил: <strong id="previewAddedGrams">0</strong> г
-        </div>
+        <div class="input-group"><label>📦 Вес банки с разбавленными (г)</label><input type="number" id="initialWeight" placeholder="например: 500"></div>
+        <div class="input-group"><label>➕ Вес после добавления чистых (г)</label><input type="number" id="finalWeight" placeholder="например: 1300"></div>
+        <div id="autoAddedPreview" class="chip-info" style="display:none;">⚡ Добавлено чистых: <strong id="previewAdded">0</strong> г</div>
       `;
-      const initInput = document.getElementById('initialWeight');
-      const finalInput = document.getElementById('finalWeight');
-      if (initInput && finalInput) {
-        const updatePreview = () => {
-          const init = parseFloat(initInput.value);
-          const fin = parseFloat(finalInput.value);
-          const previewDiv = document.getElementById('autoAddedPreview');
-          const previewSpan = document.getElementById('previewAddedGrams');
+      const initInp = document.getElementById('initialWeight');
+      const finalInp = document.getElementById('finalWeight');
+      if (initInp && finalInp) {
+        const update = () => {
+          let init = parseFloat(initInp.value), fin = parseFloat(finalInp.value);
+          let previewDiv = document.getElementById('autoAddedPreview');
+          let span = document.getElementById('previewAdded');
           if (!isNaN(init) && !isNaN(fin) && fin > init && init >= 0) {
-            const diff = (fin - init).toFixed(1);
-            previewSpan.innerText = diff;
+            span.innerText = (fin - init).toFixed(1);
             previewDiv.style.display = 'block';
-          } else {
-            previewDiv.style.display = 'none';
-          }
+          } else previewDiv.style.display = 'none';
         };
-        initInput.addEventListener('input', updatePreview);
-        finalInput.addEventListener('input', updatePreview);
+        initInp.addEventListener('input', update);
+        finalInp.addEventListener('input', update);
       }
     }
     document.getElementById('resultCard').style.display = 'none';
   }
 
-  // Главный расчёт
   function performCalculation() {
     const manData = getManufacturerData();
-    if (!manData) {
-      alert("Ошибка загрузки данных производителя");
-      return;
-    }
-
-    let result = null;
+    let res = null;
+    let inkWeight = 0;
     if (currentMode === 'fresh') {
-      const weightInput = document.getElementById('freshWeight');
-      if (!weightInput) return;
-      const weight = parseFloat(weightInput.value);
-      if (isNaN(weight) || weight <= 0) {
-        alert("❌ Введите вес чистых чернил (больше 0 грамм)");
-        return;
-      }
-      result = calculateFresh(weight, manData);
-      if (!result) { alert("Ошибка расчёта"); return; }
-    } 
-    else {
-      const initVal = parseFloat(document.getElementById('initialWeight')?.value);
-      const finalVal = parseFloat(document.getElementById('finalWeight')?.value);
-      if (isNaN(initVal) || isNaN(finalVal)) {
-        alert("⚠️ Заполните оба поля весов (начальный и финальный вес)");
-        return;
-      }
-      result = calculateDiluted(initVal, finalVal, manData);
-      if (result?.error) {
-        alert(result.error);
-        return;
-      }
-      if (!result) { alert("Ошибка вычислений для режима долива"); return; }
+      let w = parseFloat(document.getElementById('freshWeight')?.value);
+      if (isNaN(w) || w <= 0) { alert("Введите вес чистых чернил"); return; }
+      res = calculateFresh(w, manData);
+      inkWeight = w;
+    } else {
+      let init = parseFloat(document.getElementById('initialWeight')?.value);
+      let fin = parseFloat(document.getElementById('finalWeight')?.value);
+      if (isNaN(init) || isNaN(fin) || fin <= init) { alert("Введите корректные веса"); return; }
+      res = calculateDiluted(init, fin, manData);
+      if (!res) { alert("Ошибка: финальный вес должен быть больше начального"); return; }
+      inkWeight = res.addedInkGrams;
     }
-
-    // Отрисовка результатов
-    const resultDiv = document.getElementById('resultContent');
-    const resultCard = document.getElementById('resultCard');
-    const statGrid = document.getElementById('statGrid');
+    if (!res) return;
+    lastCalculationResult = { inkWeight, manufacturerKey: document.getElementById('manufacturer').value, result: res };
     
-    const addedInfo = (currentMode === 'diluted') 
-      ? `<div class="helper-text" style="margin-bottom:12px;">📌 Добавлено чистых чернил: <strong>${result.addedInkGrams} г</strong> (рассчитано по разнице весов)</div>`
-      : `<div class="helper-text" style="margin-bottom:12px;">📌 Чистые чернила: <strong>${result.addedInkGrams} г</strong></div>`;
-
-    const html = `
-      ${addedInfo}
-      <div class="result-item">
-        <span>🔵 CF2000 (быстрый растворитель)</span>
-        <span class="solvent-value">${result.cf2000} мл</span>
-      </div>
-      <div class="result-item">
-        <span>🔴 CF3000 (вязкостный)</span>
-        <span class="solvent-value">${result.cf3000} мл</span>
-      </div>
-      <div class="result-item">
-        <span>⚡ Всего растворителя</span>
-        <span class="solvent-value">${result.totalSolvent} мл</span>
-      </div>
-      <div class="chip-info" style="margin-top:12px; background:rgba(0,0,0,0.3);">
-        🧪 Рецепт для ${manData.name} | пропорция CF2000:CF3000 = ${Math.round(manData.cf2000ratio*100)}% / ${Math.round(manData.cf3000ratio*100)}%
-      </div>
+    // Отображаем результат
+    document.getElementById('resultContent').innerHTML = `
+      <div class="helper-text" style="margin-bottom:8px;">📌 Чистые чернила: <strong>${res.addedInkGrams} г</strong></div>
+      <div class="result-item"><span>🔵 CF2000</span><span class="solvent-value">${res.cf2000} мл</span></div>
+      <div class="result-item"><span>🔴 CF3000</span><span class="solvent-value">${res.cf3000} мл</span></div>
+      <div class="result-item"><span>⚡ Всего растворителя</span><span class="solvent-value">${res.totalSolvent} мл</span></div>
     `;
-    resultDiv.innerHTML = html;
-    resultCard.style.display = 'block';
-    statGrid.style.display = 'flex';
-    document.getElementById('totalCost').innerHTML = result.totalCost + ' ₽';
-    document.getElementById('timeSave').innerHTML = '⏱️ ~15 сек';
-    document.getElementById('accuracyFill').style.width = '97%';
-    document.getElementById('accuracyValue').innerHTML = '97%';
-    resultCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    document.getElementById('resultCard').style.display = 'block';
+    document.getElementById('feedbackBlock').style.display = 'block';
+    document.getElementById('cf5000AdviceBlock').style.display = 'none';
+    document.getElementById('aiSuggestionText').innerHTML = '';
+    document.getElementById('workshopTemp').value = '';
+    document.querySelectorAll('input[name="dryness"]').forEach(r => r.checked = false);
+    document.getElementById('resultCard').scrollIntoView({ behavior: 'smooth' });
   }
 
-  // Инициализация обработчиков
-  function init() {
-    renderDynamicFields();
-    // Переключение режимов
-    const modeBtns = document.querySelectorAll('.mode-btn');
-    modeBtns.forEach(btn => {
+  // Обработчик выбора "чернила сохнут" — показать рекомендацию и блок CF5000
+  function onDrynessChange() {
+    const selected = document.querySelector('input[name="dryness"]:checked');
+    if (!selected || selected.value !== 'bad') {
+      document.getElementById('cf5000AdviceBlock').style.display = 'none';
+      return;
+    }
+    // Пользователь сказал, что чернила сохнут — показываем блок с CF5000
+    const tempInput = document.getElementById('workshopTemp');
+    const temp = parseFloat(tempInput.value);
+    if (!lastCalculationResult || isNaN(temp)) {
+      // Если температура ещё не введена, показываем заглушку
+      document.getElementById('aiSuggestionText').innerHTML = `🌡️ Укажите температуру, чтобы получить рекомендацию.`;
+      document.getElementById('cf5000AdviceBlock').style.display = 'block';
+      return;
+    }
+    const rec = getRecommendation(lastCalculationResult.inkWeight, temp, lastCalculationResult.manufacturerKey);
+    const adviceBlock = document.getElementById('aiSuggestionText');
+    if (rec) {
+      adviceBlock.innerHTML = `🧠 Анализ прошлых замесов: при температуре ~${temp}°C и похожем весе вы добавляли <strong>${rec.ml} мл CF5000</strong> (на основе ${rec.count} случаев). Рекомендую повторить.`;
+      document.getElementById('cf5000Amount').value = rec.ml;
+    } else {
+      adviceBlock.innerHTML = `📝 Пока нет похожих случаев при такой температуре. Внесите решение сейчас — система запомнит его для будущих замесов.`;
+      document.getElementById('cf5000Amount').value = 100;
+    }
+    document.getElementById('cf5000AdviceBlock').style.display = 'block';
+  }
+
+  function saveCurrentExperience() {
+    if (!lastCalculationResult) return;
+    const temp = parseFloat(document.getElementById('workshopTemp').value);
+    const cf5000ml = parseFloat(document.getElementById('cf5000Amount').value);
+    if (isNaN(temp) || temp < 20) {
+      alert("Пожалуйста, укажите температуру в цеху");
+      return;
+    }
+    if (isNaN(cf5000ml) || cf5000ml <= 0) {
+      alert("Укажите количество CF5000, которое вы добавили");
+      return;
+    }
+    addExperience(lastCalculationResult.inkWeight, temp, cf5000ml, lastCalculationResult.manufacturerKey);
+    alert(`✅ Опыт сохранён! При температуре ${temp}°C и весе ${lastCalculationResult.inkWeight}г добавлено ${cf5000ml} мл CF5000. Система запомнила.`);
+    document.getElementById('cf5000AdviceBlock').style.display = 'none';
+    document.querySelectorAll('input[name="dryness"]').forEach(r => r.checked = false);
+  }
+
+  // --- Привязка событий ---
+  function bindEvents() {
+    document.querySelectorAll('.mode-btn').forEach(btn => {
       btn.addEventListener('click', () => {
-        currentMode = btn.getAttribute('data-mode');
-        modeBtns.forEach(b => b.classList.remove('active'));
+        currentMode = btn.dataset.mode;
+        document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
         renderDynamicFields();
         document.getElementById('resultCard').style.display = 'none';
       });
     });
-    // Кнопка рассчитать
-    const calcBtn = document.getElementById('calculateBtn');
-    if (calcBtn) calcBtn.addEventListener('click', performCalculation);
-    // Смена производителя -> скрыть старый результат
-    const manSelect = document.getElementById('manufacturer');
-    if (manSelect) manSelect.addEventListener('change', () => {
-      document.getElementById('resultCard').style.display = 'none';
+    document.getElementById('calculateBtn').addEventListener('click', performCalculation);
+    document.getElementById('manufacturer').addEventListener('change', () => document.getElementById('resultCard').style.display = 'none');
+    document.querySelectorAll('input[name="dryness"]').forEach(radio => {
+      radio.addEventListener('change', onDrynessChange);
     });
-    // Нажатие Enter
-    const handleEnter = (e) => {
-      if (e.key === 'Enter') {
-        e.preventDefault();
-        performCalculation();
-      }
-    };
-    document.addEventListener('keypress', handleEnter);
+    document.getElementById('saveFeedbackBtn')?.addEventListener('click', saveCurrentExperience);
+    const tempInput = document.getElementById('workshopTemp');
+    if (tempInput) {
+      tempInput.addEventListener('input', () => {
+        if (document.querySelector('input[name="dryness"]:checked')?.value === 'bad') onDrynessChange();
+      });
+    }
   }
 
-  init();
+  renderDynamicFields();
+  bindEvents();
 </script>
 </body>
 </html>
